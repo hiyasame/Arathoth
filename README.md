@@ -8,6 +8,6 @@
 * Entity/Projectile Attributes Support
 * Advanced API for Developers
 # Update-Log
-* [Chinese only](http://ace.ajax.org/)
+* [Chinese only](https://github.com/Freeze003/Arathoth-I/blob/master/Update-Log.md)
 # Black History
 * [Version Zero](https://github.com/Freeze003/Arathoth-Zero) (Such a bad code!)
