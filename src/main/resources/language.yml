@@ -1,0 +1,33 @@
+Languages:
+  Type: 'Chinese'
+  Settings:
+    Enable: '&f插件已经成功加载!'
+    PAPI-FOUND: '&fPlaceHolderAPI &8载入!'
+    PAPI-NOTFOUND: '&4未找到 &cPlaceHolderAPI'
+    PAPI-HOOK: '&fPlaceholder Hook!'
+    PAPI-FAILD: '&4Failed to hook PlaceHolderAPI'
+    Attribute-DefaultDescription: '该属性没有描述'
+    ATTR-LOAD: '&8注册属性: &f{name} &8来自插件: &f{plugin}'
+    CONDITION-LOAD: '&8注册条件: &f{name} &8来自插件: &f{plugin}'
+    Command:
+      Helper:
+        - '&8&l▼&7&l&m┉┉┉┉┉&8&l[ &f&lArathothI &7指令帮助 &8&l]&7&l&m┉┉┉┉┉&8&l▼'
+        - ' &8&l●&7主命令: &f/Arathoth [arguments...]'
+        - '" &8&l●&7子命令: '
+        - '    &7&l┗ &fListattr '
+        - '        &8▶ &7列出已经注册的属性/规则/槽位'
+        - '    &7&l┗ &fReload '
+        - '        &8▶ &7重载配置'
+        - '    &7&l┗ &fStatusInfo &7[Online_Player]'
+        - '        &8▶ &7列出该玩家属性信息'
+        - '    &7&l┗ &fAbout '
+        - '        &8▶ &7关于插件/作者'
+        - ' &8&l●&7SpecialCommands: '
+        - '    &7&l┗ &f/{StatusCommand}'
+        - '        &8▶ &7列出玩家属性信息，可在config.yml中自定用法'
+        - '&8&l▲&7&l&m┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉&8&l▲'
+      StatusInfo:
+        NOT-ONLINE: '&7玩家不在线或不存在'
+      Reload: '&7重载完成! {time}'
+      Error: '&7错误的指令参数'
+    PlaceHolderError: '变量错误'

@@ -1,0 +1,11 @@
+name: ArathothI
+version: 1.0-SNAPSHOT
+main: ink.rainbowbridge.v1.arathoth.ArathothI
+depend: [ PlaceHolderAPI ]
+authors: [ Freeze003 ]
+description: Powerful Item-Attribute Plugin
+website: github.com/Freeze003/Arathoth-I
+commands:
+  Arathoth:
+    usage: /Arathoth
+    aliases: [ Ara ]
