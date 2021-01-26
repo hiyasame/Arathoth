@@ -35,7 +35,13 @@ public abstract class ArathothCondition {
     public final FileConfiguration getConfig(){
         File file = new File(ArathothI.getInstance().getDataFolder(), "Conditions." + getName() + ".yml");
         if(load()){
-            return setDefaultConfig(YamlConfiguration.loadConfiguration(file));
+            FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+            setDefaultConfig(config);
+            try {
+                config.save(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return YamlConfiguration.loadConfiguration(file);
     }
@@ -43,7 +49,7 @@ public abstract class ArathothCondition {
      * 重写它来操作默认config
      * @param config 属性config
      */
-    public abstract FileConfiguration setDefaultConfig(FileConfiguration config);
+    public abstract void setDefaultConfig(FileConfiguration config);
 
     /**
      * 载入配置方法，不建议重写

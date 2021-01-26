@@ -132,4 +132,16 @@ public class ArathothAPI {
     public ArathothStatusData getArrowData(Entity e,String name){
         return (ArathothStatusData) ArathothI.getMetadata(e,name,ArathothI.getInstance());
     }
+    /**
+     * 概率判断方法
+     *
+     * @param rate 概率
+     * @return 是否通过
+     */
+    public boolean Chance(Double rate){
+        if (ArathothI.random.nextDouble() < rate){
+            return true;
+        }
+        return false;
+    }
 }

@@ -2,6 +2,10 @@ package ink.rainbowbridge.v1.arathoth;
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.TypeHost;
 import ink.rainbowbridge.v1.arathoth.api.ArathothAPI;
+import ink.rainbowbridge.v1.arathoth.attribute.sub.attributes.*;
+import ink.rainbowbridge.v1.arathoth.attribute.sub.conditions.LevelRequired;
+import ink.rainbowbridge.v1.arathoth.attribute.sub.conditions.OwnderRequest;
+import ink.rainbowbridge.v1.arathoth.attribute.sub.conditions.PermRequest;
 import ink.rainbowbridge.v1.arathoth.bstats.Metrics;
 import ink.rainbowbridge.v1.arathoth.commands.MainCommand;
 import ink.rainbowbridge.v1.arathoth.listener.MessageListener;
@@ -15,6 +19,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.metadata.Metadatable;
 import org.bukkit.plugin.Plugin;
@@ -147,6 +152,30 @@ public final class ArathothI extends JavaPlugin {
     Bukkit.getPluginManager().registerEvents(new StatusEventCaller(), this);
     Bukkit.getPluginManager().registerEvents(new StatusCommandListener(),this);
     Bukkit.getPluginCommand("Arathoth").setExecutor(new MainCommand());
+    //注册属性
+    new AdditionalHealth().register(this);
+    new CritArmor().register(this);
+    new CritChance().register(this);
+    new CritDamage().register(this);
+    new CritDefense().register(this);
+    new DodgeRate().register(this);
+    new HitRate().register(this);
+    new ImmeOblivion().register(this);
+    new LifeSteal().register(this);
+    new MagicArmor().register(this);
+    new MagicDamage().register(this);
+    new MonsterDamage().register(this);
+    new Oblivion().register(this);
+    new PhysicalArmor().register(this);
+    new PhysicalDamage().register(this);
+    new PlayerDamage().register(this);
+    new Regen().register(this);
+    new MonsterArmor().register(this);
+    new PlayerArmor().register(this);
+    //条件注册
+    new LevelRequired().register(this);
+    new PermRequest().register(this);
+    new OwnderRequest().register(this);
     }
 
     public static Object getMetadata(Metadatable object, String key, Plugin plugin) {

@@ -47,10 +47,16 @@ public abstract class ArathothAttribute {
      * 获取属性配置文件
      * @return config
      */
-    public final FileConfiguration getConfig(){
+    public final FileConfiguration getConfig() {
         File file = new File(ArathothI.getInstance().getDataFolder(), "Attributes." + getType().toString().toLowerCase() + "." + getName() + ".yml");
         if(load()){
-            return setDefaultConfig(YamlConfiguration.loadConfiguration(file));
+           FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+           setDefaultConfig(config);
+            try {
+                config.save(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         return YamlConfiguration.loadConfiguration(file);
     }
@@ -68,7 +74,7 @@ public abstract class ArathothAttribute {
      * 重写它来操作默认config
      * @param config 属性config
      */
-    public abstract FileConfiguration setDefaultConfig(FileConfiguration config);
+    public abstract void setDefaultConfig(FileConfiguration config);
 
     /**
      * 载入配置方法，不建议重写
@@ -172,13 +178,13 @@ public abstract class ArathothAttribute {
             for(Integer slot : SlotManager.getSlots().keySet()){
                 if (ItemUtils.isApproveItem(p.getInventory().getItem(slot))){
                     //TODO 暂时没加条件判断，等条件写好再说
-                    if(p.getInventory().getItem(slot).getItemMeta().getLore().get(0).contains(SlotManager.getSlots().get(slot))){
+                    if(p.getInventory().getItem(slot).getItemMeta().getLore().get(0).contains(SlotManager.getSlots().get(slot)) && passCondition(p.getInventory().getItem(slot),p)){
                         items.add(p.getInventory().getItem(slot));
                     }
                 }
             }
             if (ItemUtils.isApproveItem(p.getInventory().getItemInMainHand())){
-                if(p.getInventory().getItemInMainHand().getItemMeta().getLore().get(0).contains(SlotManager.getMainKey())){
+                if(p.getInventory().getItemInMainHand().getItemMeta().getLore().get(0).contains(SlotManager.getMainKey()) && passCondition(p.getInventory().getItemInMainHand(),p)){
                     items.add(p.getInventory().getItemInMainHand());
                 }
             }
@@ -253,5 +259,14 @@ public abstract class ArathothAttribute {
      */
     public String getPlaceHolder(Player p,PlaceHolderType type){
         return ParseValue(p).getPlaceHolder(type);
+    }
+
+    private boolean passCondition(ItemStack item,Player player){
+        for(ArathothCondition condition : ArathothI.getAPI().getCondInstSet()){
+            if (!condition.pass(item,player)){
+                return false;
+            }
+        }
+        return true;
     }
 }

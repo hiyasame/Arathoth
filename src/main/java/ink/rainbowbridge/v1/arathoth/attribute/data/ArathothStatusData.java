@@ -134,4 +134,12 @@ public class ArathothStatusData {
         this.max = max;
     }
 
+    public ArathothStatusData SimpleAdd(Double value){
+        return new ArathothStatusData(min+value,max+value,percent);
+    }
+
+    public ArathothStatusData SimpleDecrease(Double value){
+        return new ArathothStatusData(min-value,max-value,percent);
+    }
+
 }
