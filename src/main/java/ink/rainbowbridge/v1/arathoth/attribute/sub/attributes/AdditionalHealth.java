@@ -1,6 +1,7 @@
 package ink.rainbowbridge.v1.arathoth.attribute.sub.attributes;
 
 import ink.rainbowbridge.v1.arathoth.attribute.abstracts.ArathothAttribute;
+import ink.rainbowbridge.v1.arathoth.attribute.data.ArathothStatusData;
 import ink.rainbowbridge.v1.arathoth.attribute.enums.StatusType;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
@@ -15,9 +16,10 @@ import org.bukkit.event.Event;
  */
 public class AdditionalHealth extends ArathothAttribute {
     @Override
-    public void setDefaultConfig(FileConfiguration config) {
+    public FileConfiguration setDefaultConfig(FileConfiguration config) {
         config.set(getName()+".Settings.MinHealth",1.0D);
         config.set(getName()+".Settings.BaseHealth",20.0D);
+        return config;
     }
 
     @Override
@@ -26,9 +28,8 @@ public class AdditionalHealth extends ArathothAttribute {
     }
 
     @Override
-    public void onExecute(Event event, LivingEntity executor, Projectile projectile) {
-        Double value = ParseValue(executor).solveData();
-        Double v2 = value+getConfig().getDouble(getName()+".Settings.BaseHealth");
+    public void onExecute(Event event, LivingEntity executor, ArathothStatusData data) {
+        Double v2 = data.solveData()+getConfig().getDouble(getName()+".Settings.BaseHealth");
         if(v2 < getConfig().getDouble(getName()+".Settings.BaseHealth")){
             executor.setMaxHealth(getConfig().getDouble(getName()+".Settings.BaseHealth"));
         }

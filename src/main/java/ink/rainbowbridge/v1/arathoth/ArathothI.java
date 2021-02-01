@@ -1,6 +1,5 @@
 package ink.rainbowbridge.v1.arathoth;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.TypeHost;
 import ink.rainbowbridge.v1.arathoth.api.ArathothAPI;
 import ink.rainbowbridge.v1.arathoth.attribute.sub.attributes.*;
 import ink.rainbowbridge.v1.arathoth.attribute.sub.conditions.LevelRequired;
@@ -11,6 +10,7 @@ import ink.rainbowbridge.v1.arathoth.commands.MainCommand;
 import ink.rainbowbridge.v1.arathoth.listener.MessageListener;
 import ink.rainbowbridge.v1.arathoth.listener.StatusCommandListener;
 import ink.rainbowbridge.v1.arathoth.listener.StatusEventCaller;
+import ink.rainbowbridge.v1.arathoth.listener.StatusExecuteListener;
 import ink.rainbowbridge.v1.arathoth.support.SupportPAPI;
 import ink.rainbowbridge.v1.arathoth.utils.DrawFucker;
 import org.bukkit.Bukkit;
@@ -19,7 +19,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.metadata.Metadatable;
 import org.bukkit.plugin.Plugin;
@@ -42,32 +41,7 @@ public final class ArathothI extends JavaPlugin {
     public void onEnable() {
         // Plugin startup logic
         instance = this;
-        if (!getDataFolder().exists())
-            getDataFolder().mkdir();
-        File file = new File(getDataFolder(), "config.yml");
-        if (!file.exists())
-            saveDefaultConfig();
-        reloadConfig();
-
-        File attributeFile = new File(getDataFolder(), "Attributes");
-        if (!attributeFile.exists()) {
-            attributeFile.mkdirs();
-        }
-
-        File RulesFile = new File(getDataFolder(), "Rules");
-        if (!RulesFile.exists()) {
-            RulesFile.mkdirs();
-        }
-
-        File language = new File(getDataFolder(), "language.yml");
-        if (!language.exists()) {
-            saveResource("language.yml",true);
-        }
-
-        DebugLevel = config.getInt("Debug-Level");
-        if (config.get("DecimalFormat") != null) {
-            DecimalFormat = new DecimalFormat(config.getString("DecimalFormat"));
-        }
+        load();
         /**
          * Bstats register
          */
@@ -151,6 +125,7 @@ public final class ArathothI extends JavaPlugin {
     Bukkit.getPluginManager().registerEvents(new MessageListener(),this);
     Bukkit.getPluginManager().registerEvents(new StatusEventCaller(), this);
     Bukkit.getPluginManager().registerEvents(new StatusCommandListener(),this);
+    Bukkit.getPluginManager().registerEvents(new StatusExecuteListener(), this);
     Bukkit.getPluginCommand("Arathoth").setExecutor(new MainCommand());
     //注册属性
     new AdditionalHealth().register(this);
@@ -172,6 +147,7 @@ public final class ArathothI extends JavaPlugin {
     new Regen().register(this);
     new MonsterArmor().register(this);
     new PlayerArmor().register(this);
+    new AttackRange().register(this);
     //条件注册
     new LevelRequired().register(this);
     new PermRequest().register(this);
@@ -187,5 +163,54 @@ public final class ArathothI extends JavaPlugin {
             }
         }
         return null;
+    }
+
+    public void load(){
+        if (!getDataFolder().exists())
+            getDataFolder().mkdir();
+        File file = new File(getDataFolder(), "config.yml");
+        if (!file.exists())
+            saveDefaultConfig();
+        reloadConfig();
+
+        File attributeFile = new File(getDataFolder(), "Attributes");
+        if (!attributeFile.exists()) {
+            attributeFile.mkdirs();
+        }
+
+        File update = new File(attributeFile, "update");
+        if (!update.exists()) {
+            update.mkdirs();
+        }
+
+        File attack = new File(attributeFile, "attack");
+        if (!attack.exists()) {
+            attack.mkdirs();
+        }
+
+        File custom = new File(attributeFile, "custom");
+        if (!custom.exists()) {
+            custom.mkdirs();
+        }
+
+        File defense = new File(attributeFile, "defense");
+        if (!defense.exists()) {
+            defense.mkdirs();
+        }
+
+        File RulesFile = new File(getDataFolder(), "Conditions");
+        if (!RulesFile.exists()) {
+            RulesFile.mkdirs();
+        }
+
+        File language = new File(getDataFolder(), "language.yml");
+        if (!language.exists()) {
+            saveResource("language.yml",true);
+        }
+
+        DebugLevel = config.getInt("Debug-Level");
+        if (config.get("DecimalFormat") != null) {
+            DecimalFormat = new DecimalFormat(config.getString("DecimalFormat"));
+        }
     }
 }

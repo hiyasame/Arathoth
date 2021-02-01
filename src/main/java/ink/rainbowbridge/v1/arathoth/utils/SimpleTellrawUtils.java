@@ -51,14 +51,17 @@ public class SimpleTellrawUtils {
      */
     public static void SimpleTellraw(Player p, String str){
         try {
-            Object craftPlayer = getCbClass("CraftPlayer").cast(p);
-            Object entityPlayer = craftPlayer.getClass().getMethod("getHandle").invoke(craftPlayer);
-            Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
             Class PacketPlayOutChat = getNMSClass("PacketPlayOutChat");
-            Class PacketDataSerializer = getNMSClass("PacketDataSerializer");
-            Object PacketPlayOutChatInstance = PacketPlayOutChat.getConstructor(PacketDataSerializer).newInstance(PacketDataSerializer.getMethod("a",String.class).invoke(str));
+            Class IChatBaseComponent = getNMSClass("IChatBaseComponent");
+            Class ChatSerializer = getNMSClass("IChatBaseComponent.ChatSerializer");
+            Class ChatMessageType = getNMSClass("ChatMessageType");
+            //获取枚举
+            Object Chat = ChatMessageType.getMethod("a",byte.class).invoke((byte)0);
+            Object PacketPlayOutChatInstance = PacketPlayOutChat.getConstructor(IChatBaseComponent).newInstance(ChatSerializer.getMethod("a",String.class).invoke(str),Chat);
             sendPacket(p,PacketPlayOutChatInstance);
-        }catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException | NoSuchFieldException | InstantiationException e){}
+        }catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException | InstantiationException e){
+            e.printStackTrace();
+        }
     }
 
     /**

@@ -13,7 +13,7 @@ Languages:
       Helper:
         - '&8&l▼&7&l&m┉┉┉┉┉&8&l[ &f&lArathothI &7指令帮助 &8&l]&7&l&m┉┉┉┉┉&8&l▼'
         - ' &8&l●&7主命令: &f/Arathoth [arguments...]'
-        - '" &8&l●&7子命令: '
+        - ' &8&l●&7子命令: '
         - '    &7&l┗ &fListattr '
         - '        &8▶ &7列出已经注册的属性/规则/槽位'
         - '    &7&l┗ &fReload '
@@ -25,7 +25,7 @@ Languages:
         - ' &8&l●&7SpecialCommands: '
         - '    &7&l┗ &f/{StatusCommand}'
         - '        &8▶ &7列出玩家属性信息，可在config.yml中自定用法'
-        - '&8&l▲&7&l&m┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉&8&l▲'
+        - '&8&l▲&7&l&m┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉┉&8&l▲'
       StatusInfo:
         NOT-ONLINE: '&7玩家不在线或不存在'
       Reload: '&7重载完成! {time}'

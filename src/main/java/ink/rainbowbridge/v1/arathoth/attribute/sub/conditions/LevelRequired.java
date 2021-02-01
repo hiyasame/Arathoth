@@ -24,8 +24,9 @@ import java.util.regex.Pattern;
  */
 public class LevelRequired extends ArathothCondition implements Listener {
     @Override
-    public void setDefaultConfig(FileConfiguration config) {
+    public FileConfiguration setDefaultConfig(FileConfiguration config) {
         config.set(getName()+".Settings.Message","&7&l[&f&lArathoth&7&l] &7你的等级不足以使用 {item} &7,将不会计入属性计算.");
+        return config;
     }
 
     @Override

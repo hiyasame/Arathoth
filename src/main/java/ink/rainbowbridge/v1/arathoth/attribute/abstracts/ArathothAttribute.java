@@ -35,6 +35,7 @@ import java.util.List;
  * @Since 2021/1/25 14:36
  */
 public abstract class ArathothAttribute {
+    private FileConfiguration config;
     /**
      * 获取属性名
      * @return name
@@ -48,17 +49,7 @@ public abstract class ArathothAttribute {
      * @return config
      */
     public final FileConfiguration getConfig() {
-        File file = new File(ArathothI.getInstance().getDataFolder(), "Attributes." + getType().toString().toLowerCase() + "." + getName() + ".yml");
-        if(load()){
-           FileConfiguration config = YamlConfiguration.loadConfiguration(file);
-           setDefaultConfig(config);
-            try {
-                config.save(file);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return YamlConfiguration.loadConfiguration(file);
+        return config;
     }
 
     /**
@@ -74,21 +65,19 @@ public abstract class ArathothAttribute {
      * 重写它来操作默认config
      * @param config 属性config
      */
-    public abstract void setDefaultConfig(FileConfiguration config);
+    public abstract FileConfiguration setDefaultConfig(FileConfiguration config);
 
     /**
      * 载入配置方法，不建议重写
      * @return first
      */
     public final boolean load() {
-        File file = new File(ArathothI.getInstance().getDataFolder(), "Attributes." + getType().toString().toLowerCase() + "." + getName() + ".yml");
-        FileConfiguration config = null;
+        File file = new File(new File(new File(ArathothI.getInstance().getDataFolder(),"Attributes"), getType().toString().toLowerCase()),getName()+".yml");
         boolean first = false;
         if (!file.exists()) {
             FileWriter fw = null;
             PrintWriter out = null;
             try {
-                file.createNewFile();
                 fw = new FileWriter(file);
                 out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)));
                 out.write("# Arathoth Attributes Configuration\n");
@@ -101,8 +90,12 @@ public abstract class ArathothAttribute {
                 out.close();
                 fw.close();
                 first = true;
+                FileConfiguration config1 = YamlConfiguration.loadConfiguration(file);
+                FileConfiguration edited = setDefaultConfig(config1);
+                this.config = edited;
+                edited.save(file);
             } catch (IOException e) {
-
+                e.printStackTrace();
             }
         }
         return first;
@@ -137,9 +130,9 @@ public abstract class ArathothAttribute {
      * 运行属性抽象方法
      * @param event eve
      * @param executor entity
-     * @param projectile p
+     * @param data data
      */
-    public abstract void onExecute(Event event, LivingEntity executor,Projectile projectile);
+    public abstract void onExecute(Event event, LivingEntity executor,ArathothStatusData data);
 
     /**
      * 获取pattern
@@ -153,15 +146,15 @@ public abstract class ArathothAttribute {
      * 执行方法，call ExecuteEvent
      * @param event 当前事件
      * @param executor 属性触发者
-     * @param projectile 弹射物，若不为弹射物实体触发则为null
+     * @param data 弹射物，若不为弹射物实体触发则为null
      */
-    public final void execute(Event event, LivingEntity executor, Projectile projectile){
-        ArathothStatusExecuteEvent eve = new ArathothStatusExecuteEvent(this,executor,ParseValue(executor));
+    public final void execute(Event event, LivingEntity executor, ArathothStatusData data){
+        ArathothStatusExecuteEvent eve = new ArathothStatusExecuteEvent(this,executor,data);
         Bukkit.getPluginManager().callEvent(eve);
         if (!isEnable()){ return; }
         if (eve.isCancelled()){ return; }
         long time = System.currentTimeMillis();
-        onExecute(event,executor,projectile);
+        onExecute(event,executor,data);
         ArathothI.Debug(3,"执行属性: &f"+eve.getAttr().getName()+" &8, 执行者: &f"+ NameUtils.getEntityName(eve.getExecutor())+" &8耗时: &f"+(System.currentTimeMillis() - time)+"ms");
         ArathothI.Debug(4,"&8Min: &f"+ArathothI.DecimalFormat.format(eve.getData().getMin())+" &8Max: &f"+ArathothI.DecimalFormat.format(eve.getData().getMax())+" &8Pct: &f"+ArathothI.DecimalFormat.format(eve.getData().getPercent()));
     }

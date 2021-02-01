@@ -1,6 +1,7 @@
 package ink.rainbowbridge.v1.arathoth.attribute.sub.attributes;
 
 import ink.rainbowbridge.v1.arathoth.attribute.abstracts.ArathothAttribute;
+import ink.rainbowbridge.v1.arathoth.attribute.data.ArathothStatusData;
 import ink.rainbowbridge.v1.arathoth.attribute.enums.StatusType;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
@@ -16,8 +17,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
  */
 public class MonsterDamage extends ArathothAttribute {
     @Override
-    public void setDefaultConfig(FileConfiguration config) {
-
+    public FileConfiguration setDefaultConfig(FileConfiguration config) {
+        return config;
     }
 
     @Override
@@ -26,10 +27,10 @@ public class MonsterDamage extends ArathothAttribute {
     }
 
     @Override
-    public void onExecute(Event event, LivingEntity executor, Projectile projectile) {
+    public void onExecute(Event event, LivingEntity executor, ArathothStatusData data) {
         if(event instanceof EntityDamageByEntityEvent) {
             if (((EntityDamageByEntityEvent) event).getEntity() instanceof Monster) {
-                ((EntityDamageByEntityEvent) event).setDamage(((EntityDamageByEntityEvent) event).getDamage() + ParseValue(executor).solveData());
+                ((EntityDamageByEntityEvent) event).setDamage(((EntityDamageByEntityEvent) event).getDamage() + data.solveData());
             }
         }
     }

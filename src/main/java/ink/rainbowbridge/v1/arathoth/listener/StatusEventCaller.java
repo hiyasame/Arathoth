@@ -34,7 +34,7 @@ public class StatusEventCaller implements Listener {
             public void run() {
                 Bukkit.getPluginManager().callEvent(new ArathothUpdateExecuteEvent(e));
             }
-        }.runTaskLater(ArathothI.getInstance(),3);
+        }.runTaskAsynchronously(ArathothI.getInstance());
     }
 
     @EventHandler(priority = EventPriority.LOWEST)

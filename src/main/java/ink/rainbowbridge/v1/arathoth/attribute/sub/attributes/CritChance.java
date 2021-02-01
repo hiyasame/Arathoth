@@ -1,6 +1,7 @@
 package ink.rainbowbridge.v1.arathoth.attribute.sub.attributes;
 
 import ink.rainbowbridge.v1.arathoth.attribute.abstracts.ArathothAttribute;
+import ink.rainbowbridge.v1.arathoth.attribute.data.ArathothStatusData;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Projectile;
@@ -13,8 +14,8 @@ import org.bukkit.event.Event;
  */
 public class CritChance extends ArathothAttribute {
     @Override
-    public void setDefaultConfig(FileConfiguration config) {
-
+    public FileConfiguration setDefaultConfig(FileConfiguration config) {
+        return config;
     }
 
     @Override
@@ -23,7 +24,7 @@ public class CritChance extends ArathothAttribute {
     }
 
     @Override
-    public void onExecute(Event event, LivingEntity executor, Projectile projectile) {
+    public void onExecute(Event event, LivingEntity executor, ArathothStatusData data) {
 
     }
 }

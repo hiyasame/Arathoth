@@ -2,6 +2,7 @@ package ink.rainbowbridge.v1.arathoth.attribute.sub.attributes;
 
 import ink.rainbowbridge.v1.arathoth.ArathothI;
 import ink.rainbowbridge.v1.arathoth.attribute.abstracts.ArathothAttribute;
+import ink.rainbowbridge.v1.arathoth.attribute.data.ArathothStatusData;
 import ink.rainbowbridge.v1.arathoth.attribute.enums.StatusType;
 import ink.rainbowbridge.v1.arathoth.utils.NmsUtils;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -17,9 +18,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
  */
 public class DodgeRate extends ArathothAttribute {
     @Override
-    public void setDefaultConfig(FileConfiguration config) {
+    public FileConfiguration setDefaultConfig(FileConfiguration config) {
         config.set(getName()+".Settings.subTitle_Victim","&3闪避");
         config.set(getName()+".Settings.subTitle_Attacker","&7遭闪避");
+        return config;
     }
 
     @Override
@@ -28,11 +30,11 @@ public class DodgeRate extends ArathothAttribute {
     }
 
     @Override
-    public void onExecute(Event event, LivingEntity executor, Projectile projectile) {
+    public void onExecute(Event event, LivingEntity executor, ArathothStatusData data) {
         if(event instanceof EntityDamageByEntityEvent){
             //JAVA变量声明真的好几把麻烦
             EntityDamageByEntityEvent e = (EntityDamageByEntityEvent)event;
-            Double chance = ParseValue(executor).solveData();
+            Double chance = data.solveData();
             if (!(e.getDamager() instanceof LivingEntity)){
                 if (ArathothI.getAPI().Chance(chance/100)){
                     try{

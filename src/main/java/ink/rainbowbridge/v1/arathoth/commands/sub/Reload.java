@@ -16,7 +16,7 @@ public class Reload implements SubCommandExecutor {
     @Override
     public boolean command(CommandSender sender, String[] args) {
         long time = System.currentTimeMillis();
-        ArathothI.getInstance().reloadConfig();
+        ArathothI.getInstance().load();
         for (ArathothAttribute attr : AttributeManager.Registered.keySet()){
             attr.load();
         }

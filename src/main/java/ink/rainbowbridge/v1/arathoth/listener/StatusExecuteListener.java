@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * 运行属性监听器
@@ -34,7 +35,12 @@ public class StatusExecuteListener implements Listener {
     public void onAttrExecute_Update(ArathothUpdateExecuteEvent event){
         for(ArathothAttribute attr : ArathothI.getAPI().getAttrInstSet()){
             if (attr.getType() == StatusType.UPDATE){
-                attr.execute(event,event.getExecutor(),null);
+                new BukkitRunnable() {
+                    @Override
+                    public void run() {
+                        attr.execute(event,event.getExecutor(),attr.ParseValue(event.getExecutor()));
+                    }
+                }.runTask(ArathothI.getInstance());
             }
         }
     }
@@ -48,10 +54,12 @@ public class StatusExecuteListener implements Listener {
         for (ArathothAttribute attr : ArathothI.getAPI().getAttrInstSet()){
             if (attr.getType() == StatusType.DEFENSE){
                 if (event.getCause() != EntityDamageEvent.DamageCause.PROJECTILE) {
-                    attr.execute(event, (LivingEntity) event.getEntity(), null);
+                    attr.execute(event, (LivingEntity) event.getEntity(), attr.ParseValue((LivingEntity) event.getEntity()));
                 }
                 else{
-                    attr.execute(event,(LivingEntity)event.getEntity(), (Projectile) ((EntityDamageByEntityEvent)event).getDamager());
+                    if(((EntityDamageByEntityEvent)event).getDamager().hasMetadata(attr.getName())) {
+                        attr.execute(event, (LivingEntity) event.getEntity(), ArathothI.getAPI().getArrowData(((EntityDamageByEntityEvent) event).getDamager(), attr.getName()));
+                    }
                 }
             }
             else if(attr.getType() == StatusType.ATTACK){
@@ -60,7 +68,11 @@ public class StatusExecuteListener implements Listener {
                         attr.execute(event, (LivingEntity) ((EntityDamageByEntityEvent) event).getDamager(), null);
                     }
                     else if(((EntityDamageByEntityEvent) event).getDamager() instanceof Projectile){
-                        attr.execute(event,null, (Projectile) ((EntityDamageByEntityEvent) event).getDamager());
+                        if(((EntityDamageByEntityEvent)event).getDamager().hasMetadata(attr.getName())) {
+                            if (((Projectile) ((EntityDamageByEntityEvent) event).getDamager()).getShooter() instanceof LivingEntity) {
+                                attr.execute(event, (LivingEntity) ((Projectile) ((EntityDamageByEntityEvent) event).getDamager()).getShooter(), ArathothI.getAPI().getArrowData(((EntityDamageByEntityEvent) event).getDamager(), attr.getName()));
+                            }
+                        }
                     }
                 }
             }
@@ -80,7 +92,7 @@ public class StatusExecuteListener implements Listener {
                     attr.execute(e, (LivingEntity) e.getBukkitEvent().getEntity(), null);
                 }
                 else{
-                    attr.execute(e,(LivingEntity)e.getBukkitEvent().getEntity(), (Projectile) (e.getBukkitEvent()).getDamager());
+                    attr.execute(e,(LivingEntity)e.getBukkitEvent().getEntity(), ArathothI.getAPI().getArrowData((e.getBukkitEvent()).getDamager(),attr.getName()));
                 }
             }
             else if(attr.getType() == StatusType.ATTACK){
@@ -88,7 +100,11 @@ public class StatusExecuteListener implements Listener {
                         attr.execute(e, (LivingEntity) (e.getBukkitEvent()).getDamager(), null);
                     }
                     else if((e.getBukkitEvent()).getDamager() instanceof Projectile){
-                        attr.execute(e,null, (Projectile) (e.getBukkitEvent()).getDamager());
+                        if(e.getBukkitEvent().getDamager().hasMetadata(attr.getName())) {
+                            if (((Projectile)e.getBukkitEvent().getDamager()).getShooter() instanceof LivingEntity) {
+                                attr.execute(e, null, ArathothI.getAPI().getArrowData((e.getBukkitEvent()).getDamager(), attr.getName()));
+                            }
+                        }
                     }
             }
         }

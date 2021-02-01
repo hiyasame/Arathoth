@@ -2,6 +2,7 @@ package ink.rainbowbridge.v1.arathoth.attribute.sub.attributes;
 
 import ink.rainbowbridge.v1.arathoth.ArathothI;
 import ink.rainbowbridge.v1.arathoth.attribute.abstracts.ArathothAttribute;
+import ink.rainbowbridge.v1.arathoth.attribute.data.ArathothStatusData;
 import ink.rainbowbridge.v1.arathoth.attribute.enums.StatusType;
 import ink.rainbowbridge.v1.arathoth.utils.NmsUtils;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -17,9 +18,10 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
  */
 public class CritDamage extends ArathothAttribute {
     @Override
-    public void setDefaultConfig(FileConfiguration config) {
+    public FileConfiguration setDefaultConfig(FileConfiguration config) {
         config.set(getName()+".Settings.subTitle_Victim","&e暴击");
         config.set(getName()+".Settings.subTitle_Attacker","&7遭暴击");
+        return config;
     }
 
     @Override
@@ -28,13 +30,13 @@ public class CritDamage extends ArathothAttribute {
     }
 
     @Override
-    public void onExecute(Event event, LivingEntity executor, Projectile projectile) {
+    public void onExecute(Event event, LivingEntity executor, ArathothStatusData data) {
         if (event instanceof EntityDamageByEntityEvent){
             EntityDamageByEntityEvent e = (EntityDamageByEntityEvent)event;
             Double rate1 = ArathothI.getAPI().getAttrInstance("CritChance").ParseValue(executor).solveData();
             Double rate2 = ArathothI.getAPI().getAttrInstance("CritDefense").ParseValue((LivingEntity) e.getEntity()).solveData();
             Double armor = ArathothI.getAPI().getAttrInstance("CritArmor").ParseValue((LivingEntity)e.getEntity()).solveData();
-            Double damage = ParseValue(executor).solveData();
+            Double damage = data.solveData();
             if (armor > damage){ return; }
             if (ArathothI.getAPI().Chance((rate1-rate2)/100)){
                 try{

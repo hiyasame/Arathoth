@@ -1,6 +1,7 @@
 package ink.rainbowbridge.v1.arathoth.attribute.sub.attributes;
 
 import ink.rainbowbridge.v1.arathoth.attribute.abstracts.ArathothAttribute;
+import ink.rainbowbridge.v1.arathoth.attribute.data.ArathothStatusData;
 import ink.rainbowbridge.v1.arathoth.attribute.enums.StatusType;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
@@ -16,8 +17,8 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
  */
 public class Oblivion extends ArathothAttribute {
     @Override
-    public void setDefaultConfig(FileConfiguration config) {
-
+    public FileConfiguration setDefaultConfig(FileConfiguration config) {
+        return config;
     }
 
     @Override
@@ -26,9 +27,9 @@ public class Oblivion extends ArathothAttribute {
     }
 
     @Override
-    public void onExecute(Event event, LivingEntity executor, Projectile projectile) {
+    public void onExecute(Event event, LivingEntity executor, ArathothStatusData data) {
         if(event instanceof EntityDamageByEntityEvent){
-            executor.damage(ParseValue(executor).solveData());
+            executor.damage(data.solveData());
         }
     }
 

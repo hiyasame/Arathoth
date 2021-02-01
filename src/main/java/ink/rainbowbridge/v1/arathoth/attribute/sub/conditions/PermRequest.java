@@ -26,8 +26,9 @@ import java.util.regex.Pattern;
  */
 public class PermRequest extends ArathothCondition implements Listener {
     @Override
-    public void setDefaultConfig(FileConfiguration config) {
+    public FileConfiguration setDefaultConfig(FileConfiguration config) {
         config.set(getName()+".Settings.Message","&7&l[&f&lArathoth&7&l] &7你没有使用 {item} &7的权限,将不会计入属性计算.");
+        return config;
     }
 
     @Override

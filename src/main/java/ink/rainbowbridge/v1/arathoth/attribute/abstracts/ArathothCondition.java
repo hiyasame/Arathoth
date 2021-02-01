@@ -20,6 +20,7 @@ import java.util.List;
  * @Since 2021/1/26 4:48
  */
 public abstract class ArathothCondition {
+    private FileConfiguration config;
     /**
      * 获取属性名
      * @return name
@@ -33,30 +34,20 @@ public abstract class ArathothCondition {
      * @return config
      */
     public final FileConfiguration getConfig(){
-        File file = new File(ArathothI.getInstance().getDataFolder(), "Conditions." + getName() + ".yml");
-        if(load()){
-            FileConfiguration config = YamlConfiguration.loadConfiguration(file);
-            setDefaultConfig(config);
-            try {
-                config.save(file);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return YamlConfiguration.loadConfiguration(file);
+        return config;
     }
     /**
      * 重写它来操作默认config
      * @param config 属性config
      */
-    public abstract void setDefaultConfig(FileConfiguration config);
+    public abstract FileConfiguration setDefaultConfig(FileConfiguration config);
 
     /**
-     * 载入配置方法，不建议重写
+     * 载入配置方法
      * @return first
      */
     public final boolean load() {
-        File file = new File(ArathothI.getInstance().getDataFolder(), "Conditions." + getName() + ".yml");
+        File file = new File(new File(ArathothI.getInstance().getDataFolder(), "Conditions"),getName()+".yml");
         FileConfiguration config = null;
         boolean first = false;
         if (!file.exists()) {
@@ -76,6 +67,10 @@ public abstract class ArathothCondition {
                 out.close();
                 fw.close();
                 first = true;
+                FileConfiguration config1 = YamlConfiguration.loadConfiguration(file);
+                FileConfiguration edited = setDefaultConfig(config1);
+                this.config = edited;
+                edited.save(file);
             } catch (IOException e) {
 
             }

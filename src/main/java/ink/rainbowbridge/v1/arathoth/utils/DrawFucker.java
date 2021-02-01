@@ -9,7 +9,7 @@ import org.bukkit.Bukkit;
 public class DrawFucker {
     public static void fuck(){
         Bukkit.getConsoleSender().sendMessage("&f".replaceAll("&","§"));
-        Bukkit.getConsoleSender().sendMessage("&f             &fArathoth Zero &8— &f阿萨托斯 Zero".replaceAll("&", "§"));
+        Bukkit.getConsoleSender().sendMessage("&f             &fArathoth I &8— &f阿萨托斯 I".replaceAll("&", "§"));
         Bukkit.getConsoleSender().sendMessage("&f".replaceAll("&","§"));
         Bukkit.getConsoleSender().sendMessage("&f#############################################################".replaceAll("&","§"));
         Bukkit.getConsoleSender().sendMessage("&f".replaceAll("&","§"));

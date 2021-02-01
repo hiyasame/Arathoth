@@ -14,7 +14,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityPickupItemEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.regex.Matcher;
@@ -26,10 +25,11 @@ import java.util.regex.Pattern;
  */
 public class OwnderRequest extends ArathothCondition implements Listener {
     @Override
-    public void setDefaultConfig(FileConfiguration config) {
+    public FileConfiguration setDefaultConfig(FileConfiguration config) {
         config.set(getName()+".Settings.PickLimit",true);
         config.set(getName()+".Settings.PickMessage","&7&l[&f&lArathoth&7&l] &7这件物品不属于你，无法拾取.");
         config.set(getName()+".Settings.Message","&7&l[&f&lArathoth&7&l] &7物品 {item} &7不属于你,将不会计入属性计算.");
+        return config;
     }
 
     @Override
