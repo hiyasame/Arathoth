@@ -1,30 +1,26 @@
 package ink.rainbowbridge.v1.arathoth.support;
 
-
 import ink.rainbowbridge.v1.arathoth.ALocale;
 import ink.rainbowbridge.v1.arathoth.ArathothI;
 import ink.rainbowbridge.v1.arathoth.attribute.enums.PlaceHolderType;
-import me.clip.placeholderapi.external.EZPlaceholderHook;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 /**
- * 旧版本,1.12弃用
+ * 支持新版本PAPI
  * @Author 寒雨
- * @Since 2021/1/17 9:05
+ * @Since 2021/2/7 23:39
  */
-public class SupportPAPI extends EZPlaceholderHook {
-    public SupportPAPI(Plugin plugin) {
-        super(plugin, "ArathothI");
-    }
+public class SupportPAPI_v2 extends PlaceholderExpansion {
     @Override
-    public String onPlaceholderRequest(Player p, String s) {
+    public String onPlaceholderRequest(Player p, String params) {
+        String s = params;
         if(s.startsWith("min_")){
-        try{
-            return ArathothI.getAPI().getAttrInstance(s.replace("min_","")).getPlaceHolder(p, PlaceHolderType.MIN);
-        }catch(Exception e){
-            return ALocale.getString("PlaceHolderError");
-        }
+            try{
+                return ArathothI.getAPI().getAttrInstance(s.replace("min_","")).getPlaceHolder(p, PlaceHolderType.MIN);
+            }catch(Exception e){
+                return ALocale.getString("PlaceHolderError");
+            }
         }
         else if(s.startsWith("max_")){
             try{
@@ -48,5 +44,20 @@ public class SupportPAPI extends EZPlaceholderHook {
             }
         }
         return ALocale.getString("PlaceHolderError");
+    }
+
+    @Override
+    public String getIdentifier() {
+        return "ArathothI";
+    }
+
+    @Override
+    public String getAuthor() {
+        return "寒雨";
+    }
+
+    @Override
+    public String getVersion() {
+        return ArathothI.getInstance().getDescription().getVersion();
     }
 }

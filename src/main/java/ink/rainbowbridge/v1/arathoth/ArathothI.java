@@ -12,6 +12,7 @@ import ink.rainbowbridge.v1.arathoth.listener.StatusCommandListener;
 import ink.rainbowbridge.v1.arathoth.listener.StatusEventCaller;
 import ink.rainbowbridge.v1.arathoth.listener.StatusExecuteListener;
 import ink.rainbowbridge.v1.arathoth.support.SupportPAPI;
+import ink.rainbowbridge.v1.arathoth.support.SupportPAPI_v2;
 import ink.rainbowbridge.v1.arathoth.utils.DrawFucker;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -55,7 +56,7 @@ public final class ArathothI extends JavaPlugin {
         } else {
             send(Bukkit.getConsoleSender(),ALocale.getString("PAPI-NOTFOUND"));
         }
-        boolean success = new SupportPAPI(this).hook();
+        boolean success = new SupportPAPI_v2().register();
         if (success) {
             send(Bukkit.getConsoleSender(),ALocale.getString("PAPI-HOOK"));
         } else {

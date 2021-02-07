@@ -1,5 +1,5 @@
 name: ArathothI
-version: 1.11-SNAPSHOT
+version: 1.12-SNAPSHOT
 main: ink.rainbowbridge.v1.arathoth.ArathothI
 softdepend: [ PlaceHolderAPI ]
 authors: [ 寒雨 ]
