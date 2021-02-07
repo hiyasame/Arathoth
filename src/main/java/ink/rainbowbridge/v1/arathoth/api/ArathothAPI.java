@@ -52,7 +52,7 @@ public class ArathothAPI {
                 Matcher m3 = pct.matcher(lore);
                 if (m2.find()) {
                     data.setMin(data.getMin() + Double.valueOf(m2.group(1)));
-                    data.setMax(data.getMax() + Double.valueOf(m2.group(6)));
+                    data.setMax(data.getMax() + Double.valueOf(m2.group(4)));
                 } else {
                     if (m1.find()) {
                         data.setMin(data.getMin() + Double.valueOf(m1.group(1)));

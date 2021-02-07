@@ -65,7 +65,7 @@ public class StatusExecuteListener implements Listener {
             else if(attr.getType() == StatusType.ATTACK){
                 if (event instanceof EntityDamageByEntityEvent) {
                     if (((EntityDamageByEntityEvent) event).getDamager() instanceof LivingEntity) {
-                        attr.execute(event, (LivingEntity) ((EntityDamageByEntityEvent) event).getDamager(), null);
+                        attr.execute(event, (LivingEntity) ((EntityDamageByEntityEvent) event).getDamager(), attr.ParseValue((LivingEntity) ((EntityDamageByEntityEvent) event).getDamager()));
                     }
                     else if(((EntityDamageByEntityEvent) event).getDamager() instanceof Projectile){
                         if(((EntityDamageByEntityEvent)event).getDamager().hasMetadata(attr.getName())) {
