@@ -37,6 +37,6 @@ public class Regen extends ArathothAttribute implements Listener {
     }
     @EventHandler(priority = EventPriority.HIGH)
     public void ListenAttribute(EntityRegainHealthEvent e){
-        execute(e,(LivingEntity) e.getEntity(),null);
+        execute(e,(LivingEntity) e.getEntity(),ParseValue((LivingEntity) e.getEntity()));
     }
 }

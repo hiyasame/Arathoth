@@ -4,8 +4,11 @@ package ink.rainbowbridge.v1.arathoth.listener;
 import ink.rainbowbridge.v1.arathoth.ArathothI;
 import ink.rainbowbridge.v1.arathoth.attribute.events.ArathothPostDamageEvent;
 import ink.rainbowbridge.v1.arathoth.attribute.events.ArathothUpdateExecuteEvent;
+import ink.rainbowbridge.v1.arathoth.utils.AttrUtils;
+import ink.rainbowbridge.v1.arathoth.utils.ItemUtils;
 import ink.rainbowbridge.v1.arathoth.utils.NameUtils;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -89,8 +92,25 @@ public class StatusEventCaller implements Listener {
             if (eve.isCancelled()) {
                 return;
             }
-            e.setDamage(e.getDamage() + eve.outFinalValue());
+            AttrUtils.addHealth((LivingEntity) e.getEntity(),-(eve.outFinalValue()));
             ArathothI.Debug(3, "投递元素伤害: &f" + eve.outFinalValue() + " &8Attacker: &f" + e.getDamager().getType());
+        }
+    }
+
+    /**
+     * 取消手持弓打人伤害
+     * 至于属性执行方面.....之后再说
+     * @param e 事件
+     */
+    @EventHandler(priority = EventPriority.LOWEST)
+    void onBowLeftClickDamageCancel(EntityDamageByEntityEvent e){
+        if (e.getDamager() instanceof LivingEntity){
+            LivingEntity entity = (LivingEntity)e.getDamager();
+            if (ItemUtils.isApproveItem(entity.getEquipment().getItemInMainHand())){
+                if (entity.getEquipment().getItemInMainHand().getType() == Material.BOW){
+                    e.setDamage(0.0D);
+                }
+            }
         }
     }
 }

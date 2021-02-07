@@ -67,6 +67,7 @@ public final class ArathothI extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        Bukkit.getScheduler().cancelTasks(this);
     }
 
     /**
@@ -107,7 +108,7 @@ public final class ArathothI extends JavaPlugin {
      * @param messages 消息
      */
     public static void Debug(int level,String messages){
-        if(level >= DebugLevel) {
+        if(level <= DebugLevel) {
             String prefix = "&8&l[&3&lArathoth-Debug&8&l] &8";
             Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + messages));
             for (Player p : Bukkit.getOnlinePlayers()) {
@@ -135,7 +136,6 @@ public final class ArathothI extends JavaPlugin {
     new CritDefense().register(this);
     new DodgeRate().register(this);
     new HitRate().register(this);
-    new ImmeOblivion().register(this);
     new LifeSteal().register(this);
     new MagicArmor().register(this);
     new MagicDamage().register(this);

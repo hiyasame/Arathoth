@@ -27,9 +27,14 @@ public class ListAttr implements SubCommandExecutor {
             for (ArathothAttribute attr : AttributeManager.Registered.keySet()){
                 List<String> hover = new ArrayList<>();
                 hover.add("&8&lArathothAttribute &7- &f&l"+attr.getName());
+                hover.add("\n");
+                hover.add("\n");
                 hover.add("&8isActive: &f"+attr.isEnable());
+                hover.add("\n");
                 hover.add("&8Plugin: &f"+AttributeManager.Registered.get(attr));
+                hover.add("\n");
                 hover.add("&8Type: &f"+attr.getType());
+                hover.add("\n");
                 hover.add("&8Description: &f"+attr.getDescription());
                 SimpleTellrawUtils.TellrawJson(p,"&7&l● &8"+attr.getName()+" &7isActive: &f"+attr.isEnable(),hover);
             }
@@ -38,8 +43,12 @@ public class ListAttr implements SubCommandExecutor {
             for (ArathothCondition condition : AttributeManager.RegisteredCondition.keySet()){
                 List<String> hover = new ArrayList<>();
                 hover.add("&8&lArathothCondition &7- &f&l"+condition.getName());
+                hover.add("\n");
+                hover.add("\n");
                 hover.add("&8isActive: &f"+condition.isEnable());
+                hover.add("\n");
                 hover.add("&8Plugin: &f"+AttributeManager.RegisteredCondition.get(condition));
+                hover.add("\n");
                 hover.add("&8Description: &f"+condition.getDescription());
                 SimpleTellrawUtils.TellrawJson(p,"&7&l● &8"+condition.getName()+" &7isActive: &f"+condition.isEnable(),hover);
             }

@@ -34,7 +34,9 @@ public abstract class ArathothCondition {
      * @return config
      */
     public final FileConfiguration getConfig(){
-        return config;
+        File file = new File(new File(ArathothI.getInstance().getDataFolder(), "Conditions"),getName()+".yml");
+        if(!file.exists()){load();}
+        return YamlConfiguration.loadConfiguration(file);
     }
     /**
      * 重写它来操作默认config

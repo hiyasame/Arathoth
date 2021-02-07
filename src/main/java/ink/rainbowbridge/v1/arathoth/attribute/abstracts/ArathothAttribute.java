@@ -49,7 +49,9 @@ public abstract class ArathothAttribute {
      * @return config
      */
     public final FileConfiguration getConfig() {
-        return config;
+        File file = new File(new File(new File(ArathothI.getInstance().getDataFolder(),"Attributes"), getType().toString().toLowerCase()),getName()+".yml");
+        if(!file.exists()){load();}
+        return YamlConfiguration.loadConfiguration(file);
     }
 
     /**
@@ -154,7 +156,15 @@ public abstract class ArathothAttribute {
         if (!isEnable()){ return; }
         if (eve.isCancelled()){ return; }
         long time = System.currentTimeMillis();
-        onExecute(event,executor,data);
+        if (isFixValue()){
+            if (eve.getData().getMax() < 0.0D && eve.getData().getMin() < 0.0D){
+                ArathothStatusData data1 = eve.getData();
+                data1.setMin(0.0D);
+                data1.setMax(0.0D);
+                eve.setData(data1);
+            }
+        }
+        onExecute(event,executor,eve.getData());
         ArathothI.Debug(3,"执行属性: &f"+eve.getAttr().getName()+" &8, 执行者: &f"+ NameUtils.getEntityName(eve.getExecutor())+" &8耗时: &f"+(System.currentTimeMillis() - time)+"ms");
         ArathothI.Debug(4,"&8Min: &f"+ArathothI.DecimalFormat.format(eve.getData().getMin())+" &8Max: &f"+ArathothI.DecimalFormat.format(eve.getData().getMax())+" &8Pct: &f"+ArathothI.DecimalFormat.format(eve.getData().getPercent()));
     }
@@ -253,6 +263,13 @@ public abstract class ArathothAttribute {
     public String getPlaceHolder(Player p,PlaceHolderType type){
         return ParseValue(p).getPlaceHolder(type);
     }
+
+    /**
+     * 是否在执行属性前修正负值
+     * 可以杜绝一些鬼畜的属性玩法
+     * @return 默认false
+     */
+    public boolean isFixValue(){return false;}
 
     private boolean passCondition(ItemStack item,Player player){
         for(ArathothCondition condition : ArathothI.getAPI().getCondInstSet()){

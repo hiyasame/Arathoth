@@ -10,8 +10,7 @@ import java.lang.reflect.Method;
 
 /**
  * NMS方法
- * 因代码来自TabooCode，所以著坏黑的名字
- * @Author 坏黑
+ * @Author 寒雨
  * @Since 2021/1/17 8:23
  */
 public class NmsUtils {

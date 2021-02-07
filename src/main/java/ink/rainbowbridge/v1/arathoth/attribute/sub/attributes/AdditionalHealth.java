@@ -34,7 +34,7 @@ public class AdditionalHealth extends ArathothAttribute {
             executor.setMaxHealth(getConfig().getDouble(getName()+".Settings.BaseHealth"));
         }
         else{
-            executor.setHealth(v2);
+            executor.setMaxHealth(v2);
         }
     }
 
