@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerChatTabCompleteEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.Plugin;
 
@@ -57,6 +58,16 @@ public class StatusCommandListener implements Listener {
                     p.sendTitle(ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("StatusInfo.HideTitleMessage.Title")), ChatColor.translateAlternateColorCodes('&', plugin.getConfig().getString("StatusInfo.HideTitleMessage.SubTitle")), 10, 40, 10);
                 }
             }
+        }
+    }
+
+    /**
+     * Tab补全
+     * @param e 事件
+     */
+    public void onTabComplete(PlayerChatTabCompleteEvent e){
+        if (e.getChatMessage().startsWith("/")){
+            e.getTabCompletions().add("/"+ArathothI.getInstance().getConfig().getString("StatusInfo.Command"));
         }
     }
 }

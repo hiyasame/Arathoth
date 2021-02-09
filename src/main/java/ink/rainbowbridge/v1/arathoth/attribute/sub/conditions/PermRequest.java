@@ -78,4 +78,8 @@ public class PermRequest extends ArathothCondition implements Listener {
             }
         }
     }
+    @Override
+    public String getDescription() {
+        return "权限约束";
+    }
 }

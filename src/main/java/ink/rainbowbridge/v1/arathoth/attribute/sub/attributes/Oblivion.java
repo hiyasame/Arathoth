@@ -37,4 +37,14 @@ public class Oblivion extends ArathothAttribute {
     public StatusType getType() {
         return StatusType.ATTACK;
     }
+
+    @Override
+    public boolean isFixValue() {
+        return true;
+    }
+
+    @Override
+    public String getDescription() {
+        return "物理反噬，提升数值效果";
+    }
 }

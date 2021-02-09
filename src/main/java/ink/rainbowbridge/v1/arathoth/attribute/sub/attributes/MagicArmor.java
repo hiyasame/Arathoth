@@ -43,4 +43,9 @@ public class MagicArmor extends ArathothAttribute {
     public StatusType getType() {
         return StatusType.DEFENSE;
     }
+
+    @Override
+    public String getDescription() {
+        return "魔法伤害，提升数值效果";
+    }
 }

@@ -76,5 +76,9 @@ public class LevelRequired extends ArathothCondition implements Listener {
             }
         }
     }
+    @Override
+    public String getDescription() {
+        return "等级需求";
+    }
 
 }

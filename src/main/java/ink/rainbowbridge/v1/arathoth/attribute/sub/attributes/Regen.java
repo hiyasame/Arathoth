@@ -39,4 +39,14 @@ public class Regen extends ArathothAttribute implements Listener {
     public void ListenAttribute(EntityRegainHealthEvent e){
         execute(e,(LivingEntity) e.getEntity(),ParseValue((LivingEntity) e.getEntity()));
     }
+
+    @Override
+    public boolean isFixValue() {
+        return true;
+    }
+
+    @Override
+    public String getDescription() {
+        return "饱食回复，提升数值效果";
+    }
 }

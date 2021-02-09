@@ -35,4 +35,9 @@ public class PhysicalDamage extends ArathothAttribute {
     public StatusType getType() {
         return StatusType.ATTACK;
     }
+
+    @Override
+    public String getDescription() {
+        return "物理伤害，提升数值效果";
+    }
 }

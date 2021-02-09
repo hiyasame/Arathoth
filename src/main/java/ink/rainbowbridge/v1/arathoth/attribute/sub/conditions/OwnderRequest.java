@@ -93,4 +93,8 @@ public class OwnderRequest extends ArathothCondition implements Listener {
             }
         }
     }
+    @Override
+    public String getDescription() {
+        return "灵魂绑定";
+    }
 }

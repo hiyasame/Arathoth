@@ -42,4 +42,9 @@ public class AdditionalHealth extends ArathothAttribute {
     public StatusType getType() {
         return StatusType.UPDATE;
     }
+
+    @Override
+    public String getDescription() {
+        return "额外生命，提升数值效果";
+    }
 }

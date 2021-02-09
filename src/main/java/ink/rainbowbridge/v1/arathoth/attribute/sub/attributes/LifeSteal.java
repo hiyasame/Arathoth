@@ -44,4 +44,14 @@ public class LifeSteal extends ArathothAttribute {
     public StatusType getType() {
         return StatusType.ATTACK;
     }
+
+    @Override
+    public boolean isFixValue() {
+        return true;
+    }
+
+    @Override
+    public String getDescription() {
+        return "生命偷取，提升数值效果";
+    }
 }

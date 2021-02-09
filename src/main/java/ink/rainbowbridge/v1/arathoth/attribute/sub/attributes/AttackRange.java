@@ -65,4 +65,8 @@ public class AttackRange extends ArathothAttribute {
             }
         }
     }
+    @Override
+    public String getDescription() {
+        return "攻击范围，每次普通攻击对周围属性值半径内生物都造成伤害";
+    }
 }

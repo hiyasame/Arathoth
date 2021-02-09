@@ -28,4 +28,9 @@ public class CritDefense extends ArathothAttribute {
 
     }
 
+    @Override
+    public String getDescription() {
+        return "暴击概率抵抗，提升数值效果";
+    }
+
 }

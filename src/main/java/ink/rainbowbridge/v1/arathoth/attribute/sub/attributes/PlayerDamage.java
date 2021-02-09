@@ -38,4 +38,9 @@ public class PlayerDamage extends ArathothAttribute {
     public StatusType getType() {
         return StatusType.ATTACK;
     }
+
+    @Override
+    public String getDescription() {
+        return "玩家伤害，提升数值效果";
+    }
 }

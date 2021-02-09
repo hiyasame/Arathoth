@@ -27,4 +27,9 @@ public class CritChance extends ArathothAttribute {
     public void onExecute(Event event, LivingEntity executor, ArathothStatusData data) {
 
     }
+
+    @Override
+    public String getDescription() {
+        return "暴击概率，提升数值效果";
+    }
 }

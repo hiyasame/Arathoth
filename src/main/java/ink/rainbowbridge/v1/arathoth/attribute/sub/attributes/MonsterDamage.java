@@ -39,4 +39,9 @@ public class MonsterDamage extends ArathothAttribute {
     public StatusType getType() {
         return StatusType.ATTACK;
     }
+
+    @Override
+    public String getDescription() {
+        return "怪物伤害，提升数值效果";
+    }
 }

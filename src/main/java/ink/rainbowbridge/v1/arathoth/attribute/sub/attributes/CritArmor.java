@@ -29,4 +29,9 @@ public class CritArmor extends ArathothAttribute {
 
     }
 
+    @Override
+    public String getDescription() {
+        return "暴击护甲，提升数值效果";
+    }
+
 }

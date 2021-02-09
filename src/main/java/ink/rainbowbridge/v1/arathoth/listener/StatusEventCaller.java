@@ -32,12 +32,12 @@ public class StatusEventCaller implements Listener {
      * @param e entity
      */
     private void callEve(LivingEntity e){
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                Bukkit.getPluginManager().callEvent(new ArathothUpdateExecuteEvent(e));
-            }
-        }.runTaskAsynchronously(ArathothI.getInstance());
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                        Bukkit.getPluginManager().callEvent(new ArathothUpdateExecuteEvent(e));
+                }
+            }.runTask(ArathothI.getInstance());
     }
 
     @EventHandler(priority = EventPriority.LOWEST)

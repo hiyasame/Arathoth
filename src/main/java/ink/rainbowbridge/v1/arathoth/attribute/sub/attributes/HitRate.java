@@ -26,4 +26,9 @@ public class HitRate extends ArathothAttribute {
     public void onExecute(Event event, LivingEntity executor, ArathothStatusData data) {
 
     }
+
+    @Override
+    public String getDescription() {
+        return "命中概率，提升数值效果";
+    }
 }

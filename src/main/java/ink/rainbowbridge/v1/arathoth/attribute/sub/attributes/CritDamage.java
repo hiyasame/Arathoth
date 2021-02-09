@@ -54,4 +54,9 @@ public class CritDamage extends ArathothAttribute {
     public StatusType getType() {
         return StatusType.ATTACK;
     }
+
+    @Override
+    public String getDescription() {
+        return "暴击伤害，提升数值效果";
+    }
 }

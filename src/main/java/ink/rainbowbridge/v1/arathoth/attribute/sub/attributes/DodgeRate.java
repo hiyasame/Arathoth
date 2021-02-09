@@ -61,4 +61,9 @@ public class DodgeRate extends ArathothAttribute {
     public StatusType getType() {
         return StatusType.DEFENSE;
     }
+
+    @Override
+    public String getDescription() {
+        return "闪避概率，提升数值效果";
+    }
 }
