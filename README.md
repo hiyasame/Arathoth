@@ -1,6 +1,6 @@
 # Arathoth-I
 * Advanced Attribute Plugin Based on BukkitAPI
-# Faeatures
+# Features
 * Custom Patterns
 * Permission-Attribute Addition
 * Simplify Design
