@@ -5,6 +5,7 @@ import ink.rainbowbridge.v1.arathoth.attribute.sub.attributes.*;
 import ink.rainbowbridge.v1.arathoth.attribute.sub.conditions.LevelRequired;
 import ink.rainbowbridge.v1.arathoth.attribute.sub.conditions.OwnderRequest;
 import ink.rainbowbridge.v1.arathoth.attribute.sub.conditions.PermRequest;
+import ink.rainbowbridge.v1.arathoth.attribute.sub.conditions.Unbreakable;
 import ink.rainbowbridge.v1.arathoth.bstats.Metrics;
 import ink.rainbowbridge.v1.arathoth.commands.MainCommand;
 import ink.rainbowbridge.v1.arathoth.listener.MessageListener;
@@ -153,6 +154,7 @@ public final class ArathothI extends JavaPlugin {
     new LevelRequired().register(this);
     new PermRequest().register(this);
     new OwnderRequest().register(this);
+    new Unbreakable().register(this);
     }
 
     public static Object getMetadata(Metadatable object, String key, Plugin plugin) {

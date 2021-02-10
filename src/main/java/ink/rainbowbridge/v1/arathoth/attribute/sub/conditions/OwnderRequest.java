@@ -39,56 +39,67 @@ public class OwnderRequest extends ArathothCondition implements Listener {
 
     @Override
     public boolean pass(ItemStack item, Player player) {
-        String Value = null;
-        for (String str : item.getItemMeta().getLore()){
-            str = ColorUtils.Uncolor(str);
-            for (String pt : getPatterns()){
-                Pattern pt1 = Pattern.compile(pt.replace("[VALUE]","(\\S+)"));
-                Matcher m  = pt1.matcher(str);
-                if (m.find()){
-                    Value = m.group(1);
+        if (isEnable()) {
+            String Value = null;
+            for (String str : item.getItemMeta().getLore()) {
+                str = ColorUtils.Uncolor(str);
+                for (String pt : getPatterns()) {
+                    Pattern pt1 = Pattern.compile(pt.replace("[VALUE]", "(\\S+)"));
+                    Matcher m = pt1.matcher(str);
+                    if (m.find()) {
+                        Value = m.group(1);
+                        break;
+                    }
+                }
+                if (Value != null) {
                     break;
                 }
             }
-            if (Value != null){break;}
-        }
-        if (Value == null){ return true;}
-        if (!Value.equals(player.getName())){
-            return false;
+            if (Value == null) {
+                return true;
+            }
+            if (!Value.equals(player.getName())) {
+                return false;
+            }
+            return true;
         }
         return true;
     }
 
     @EventHandler
     public void onUpdate(ArathothUpdateExecuteEvent event){
-        if (event.getExecutor() instanceof Player){
-            Player p =(Player)event.getExecutor();
-            for(Integer i : SlotManager.getSlots().keySet()){
-                if (ItemUtils.isApproveItem(p.getInventory().getItem(i))){
-                    if (!pass(p.getInventory().getItem(i),p)){
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&',getConfig().getString(getName()+".Settings.Message","&7&l[&f&lArathoth&7&l] &7物品 {item} &7不属于你,将不会计入属性计算.").replace("{item}", NameUtils.getItemName(p.getInventory().getItem(i)))));
+        if (isEnable()){
+        if (event.getExecutor() instanceof Player) {
+            Player p = (Player) event.getExecutor();
+            for (Integer i : SlotManager.getSlots().keySet()) {
+                if (ItemUtils.isApproveItem(p.getInventory().getItem(i))) {
+                    if (!pass(p.getInventory().getItem(i), p)) {
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString(getName() + ".Settings.Message", "&7&l[&f&lArathoth&7&l] &7物品 {item} &7不属于你,将不会计入属性计算.").replace("{item}", NameUtils.getItemName(p.getInventory().getItem(i)))));
                     }
                 }
 
             }
-            if (ItemUtils.isApproveItem(p.getInventory().getItemInMainHand())){
-                if (!pass(p.getInventory().getItemInMainHand(),p)){
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&',getConfig().getString(getName()+".Settings.Message","&7&l[&f&lArathoth&7&l] &7物品 {item} &7不属于你,将不会计入属性计算.").replace("{item}", NameUtils.getItemName(p.getInventory().getItemInMainHand()))));
+            if (ItemUtils.isApproveItem(p.getInventory().getItemInMainHand())) {
+                if (!pass(p.getInventory().getItemInMainHand(), p)) {
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString(getName() + ".Settings.Message", "&7&l[&f&lArathoth&7&l] &7物品 {item} &7不属于你,将不会计入属性计算.").replace("{item}", NameUtils.getItemName(p.getInventory().getItemInMainHand()))));
                 }
             }
+        }
         }
     }
 
     @EventHandler
     public void onPickup(EntityPickupItemEvent e){
-        if (e.getEntity() instanceof Player){
-            Player p = (Player)e.getEntity();
-            if (getConfig().getBoolean(getName()+".Settings.PickLimit",true)){
-                if (ItemUtils.isApproveItem(e.getItem().getItemStack())) {
-                    if (!pass(e.getItem().getItemStack(), p)) {
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("&7&l[&f&lArathoth&7&l] &7这件物品不属于你，无法拾取.")));
-                        e.setCancelled(true);
-                     }
+        if (isEnable()) {
+            if (e.getEntity() instanceof Player) {
+                Player p = (Player) e.getEntity();
+                if (getConfig().getBoolean(getName() + ".Settings.PickLimit", true)) {
+                    if (ItemUtils.isApproveItem(e.getItem().getItemStack())) {
+                        if (!pass(e.getItem().getItemStack(), p)) {
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("&7&l[&f&lArathoth&7&l] &7这件物品不属于你，无法拾取.")));
+                            e.setCancelled(true);
+                        }
+                    }
                 }
             }
         }

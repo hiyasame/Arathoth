@@ -16,6 +16,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * 运行属性监听器
+ * paper兼容
  * @Author 寒雨
  * @Since 2021/1/26 6:58
  */
@@ -54,11 +55,15 @@ public class StatusExecuteListener implements Listener {
         for (ArathothAttribute attr : ArathothI.getAPI().getAttrInstSet()){
             if (attr.getType() == StatusType.DEFENSE){
                 if (event.getCause() != EntityDamageEvent.DamageCause.PROJECTILE) {
-                    attr.execute(event, (LivingEntity) event.getEntity(), attr.ParseValue((LivingEntity) event.getEntity()));
+                    if (event.getEntity() instanceof LivingEntity) {
+                        attr.execute(event, (LivingEntity) event.getEntity(), attr.ParseValue((LivingEntity) event.getEntity()));
+                    }
                 }
                 else{
                     if(((EntityDamageByEntityEvent)event).getDamager().hasMetadata(attr.getName())) {
-                        attr.execute(event, (LivingEntity) event.getEntity(), ArathothI.getAPI().getArrowData(((EntityDamageByEntityEvent) event).getDamager(), attr.getName()));
+                        if (event.getEntity() instanceof LivingEntity) {
+                            attr.execute(event, (LivingEntity) event.getEntity(), ArathothI.getAPI().getArrowData(((EntityDamageByEntityEvent) event).getDamager(), attr.getName()));
+                        }
                     }
                 }
             }
@@ -89,10 +94,14 @@ public class StatusExecuteListener implements Listener {
         for (ArathothAttribute attr : ArathothI.getAPI().getAttrInstSet()){
             if (attr.getType() == StatusType.DEFENSE){
                 if (e.getBukkitEvent().getCause() != EntityDamageEvent.DamageCause.PROJECTILE) {
-                    attr.execute(e, (LivingEntity) e.getBukkitEvent().getEntity(), attr.ParseValue((LivingEntity) e.getBukkitEvent().getEntity()));
+                    if (e.getBukkitEvent().getEntity() instanceof LivingEntity) {
+                        attr.execute(e, (LivingEntity) e.getBukkitEvent().getEntity(), attr.ParseValue((LivingEntity) e.getBukkitEvent().getEntity()));
+                    }
                 }
-                else{
-                    attr.execute(e,(LivingEntity)e.getBukkitEvent().getEntity(), ArathothI.getAPI().getArrowData((e.getBukkitEvent()).getDamager(),attr.getName()));
+                else {
+                    if (e.getBukkitEvent().getEntity() instanceof LivingEntity) {
+                        attr.execute(e, (LivingEntity) e.getBukkitEvent().getEntity(), ArathothI.getAPI().getArrowData((e.getBukkitEvent()).getDamager(), attr.getName()));
+                    }
                 }
             }
             else if(attr.getType() == StatusType.ATTACK){

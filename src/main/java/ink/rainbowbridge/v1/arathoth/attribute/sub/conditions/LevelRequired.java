@@ -36,42 +36,51 @@ public class LevelRequired extends ArathothCondition implements Listener {
 
     @Override
     public boolean pass(ItemStack item, Player player) {
-        String Value = null;
-        for (String str : item.getItemMeta().getLore()){
-            str = ColorUtils.Uncolor(str);
-            for (String pt : getPatterns()){
-                Pattern pt1 = Pattern.compile(pt.replace("[VALUE]","(\\d+)"));
-                Matcher m  = pt1.matcher(str);
-                if (m.find()){
-                    Value = m.group(1);
+        if (isEnable()) {
+            String Value = null;
+            for (String str : item.getItemMeta().getLore()) {
+                str = ColorUtils.Uncolor(str);
+                for (String pt : getPatterns()) {
+                    Pattern pt1 = Pattern.compile(pt.replace("[VALUE]", "(\\d+)"));
+                    Matcher m = pt1.matcher(str);
+                    if (m.find()) {
+                        Value = m.group(1);
+                        break;
+                    }
+                }
+                if (Value != null) {
                     break;
                 }
             }
-            if (Value != null){break;}
-        }
-        if (Value == null){ return true;}
-        int level = Integer.parseInt(Value);
-        if (level > player.getLevel()){
-            return false;
+            if (Value == null) {
+                return true;
+            }
+            int level = Integer.parseInt(Value);
+            if (level > player.getLevel()) {
+                return false;
+            }
+            return true;
         }
         return true;
     }
 
     @EventHandler
     public void onUpdate(ArathothUpdateExecuteEvent event){
-        if (event.getExecutor() instanceof Player){
-            Player p =(Player)event.getExecutor();
-            for(Integer i : SlotManager.getSlots().keySet()){
-                if (ItemUtils.isApproveItem(p.getInventory().getItem(i))){
-                    if (!pass(p.getInventory().getItem(i),p)){
-                        p.sendMessage(ChatColor.translateAlternateColorCodes('&',getConfig().getString(getName()+".Settings.Message","&7&l[&f&lArathoth&7&l] &7你的等级不足以使用 {item} &7,将不会计入属性计算.").replace("{item}", NameUtils.getItemName(p.getInventory().getItem(i)))));
+        if (isEnable()) {
+            if (event.getExecutor() instanceof Player) {
+                Player p = (Player) event.getExecutor();
+                for (Integer i : SlotManager.getSlots().keySet()) {
+                    if (ItemUtils.isApproveItem(p.getInventory().getItem(i))) {
+                        if (!pass(p.getInventory().getItem(i), p)) {
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString(getName() + ".Settings.Message", "&7&l[&f&lArathoth&7&l] &7你的等级不足以使用 {item} &7,将不会计入属性计算.").replace("{item}", NameUtils.getItemName(p.getInventory().getItem(i)))));
+                        }
                     }
-                }
 
-            }
-            if (ItemUtils.isApproveItem(p.getInventory().getItemInMainHand())){
-                if (!pass(p.getInventory().getItemInMainHand(),p)){
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&',getConfig().getString(getName()+".Settings.Message","&7&l[&f&lArathoth&7&l] &7你的等级不足以使用 {item} &7,将不会计入属性计算.").replace("{item}", NameUtils.getItemName(p.getInventory().getItemInMainHand()))));
+                }
+                if (ItemUtils.isApproveItem(p.getInventory().getItemInMainHand())) {
+                    if (!pass(p.getInventory().getItemInMainHand(), p)) {
+                        p.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString(getName() + ".Settings.Message", "&7&l[&f&lArathoth&7&l] &7你的等级不足以使用 {item} &7,将不会计入属性计算.").replace("{item}", NameUtils.getItemName(p.getInventory().getItemInMainHand()))));
+                    }
                 }
             }
         }
