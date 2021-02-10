@@ -155,6 +155,7 @@ public abstract class ArathothAttribute {
         Bukkit.getPluginManager().callEvent(eve);
         if (!isEnable()){ return; }
         if (eve.isCancelled()){ return; }
+        if (eve.getData().isZero() && !ZeroExecute()){ return; }
         long time = System.currentTimeMillis();
         if (isFixValue()){
             if (eve.getData().getMax() < 0.0D && eve.getData().getMin() < 0.0D){
@@ -270,6 +271,13 @@ public abstract class ArathothAttribute {
      * @return 默认false
      */
     public boolean isFixValue(){return false;}
+
+    /**
+     * 若值为零是否运行
+     * 致力于屏蔽一些繁杂的运行debug信息和优化性能
+     * @return 默认false
+     */
+    public boolean ZeroExecute(){return false;}
 
     private boolean passCondition(ItemStack item,Player player){
         for(ArathothCondition condition : ArathothI.getAPI().getCondInstSet()){

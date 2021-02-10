@@ -142,4 +142,11 @@ public class ArathothStatusData {
         return new ArathothStatusData(min-value,max-value,percent);
     }
 
+    /**
+     * 判断是否为0值data
+     * @return boolean
+     */
+    public boolean isZero(){
+        return min == 0 && max == 0;
+    }
 }

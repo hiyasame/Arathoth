@@ -47,4 +47,9 @@ public class AdditionalHealth extends ArathothAttribute {
     public String getDescription() {
         return "额外生命，提升数值效果";
     }
+
+    @Override
+    public boolean ZeroExecute() {
+        return true;
+    }
 }
