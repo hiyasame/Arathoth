@@ -1,0 +1,38 @@
+# ArathothII Configuration
+# @Author 寒雨
+# 本插件只在MCBBS上发布!
+
+# Debug 等级
+Debug-Level: 0
+# 槽位设置,只有注册槽位的物品的第一行lore含有
+# 该槽位关键词时这个物品的属性词条才会被读取
+Slots:
+  MainHand: 'MainHand'
+  Register:
+    36: 'Boots'
+    37: 'Leggings'
+    38: 'Chest'
+    39: 'Helmet'
+    40: 'OffHand'
+# 属性查询信息有关
+StatusInfo:
+  # 查询命令
+  Command: 'mystatus'
+  # 查询信息
+  # 自动替换PAPI变量
+  Messages:
+    - '&f&l%player_name% &bStatusInfo'
+    - '&8PhysicalDamage: &f%ArathothII_total_PhysicalDamage%'
+  # 在这里注册的PAPI变量如果值为零则隐藏含有
+  # 该变量的一行，建议将所有属性PAPI放到这里
+  RegisteredPAPI:
+    - '%ArathothI_total_PhysicalDamage%'
+  # 如果行数小于这个数则不显示属性信息
+  # 并对目标玩家播放HideTitleMessage
+  MinLines: 1
+  HideTitleMessage:
+    Title: '&8&lSorry!'
+    SubTitle: '&7&lYou have no status!'
+DecimalFormat: '0.0'
+# 是否开启ActionBar伤害信息
+ActionBarMessageRemind: true

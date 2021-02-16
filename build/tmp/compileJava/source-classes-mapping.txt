@@ -1,0 +1,134 @@
+ink/rainbowbridge/v2/arathoth/attribute/data/StatusData.java
+ ink.rainbowbridge.v2.arathoth.attribute.data.StatusData
+ ink.rainbowbridge.v2.arathoth.attribute.data.StatusData$1
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/MonsterArmor.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.MonsterArmor
+ink/rainbowbridge/v2/arathoth/attribute/abstracts/ArathothAttribute.java
+ ink.rainbowbridge.v2.arathoth.attribute.abstracts.ArathothAttribute
+ ink.rainbowbridge.v2.arathoth.attribute.abstracts.ArathothAttribute$1
+ink/rainbowbridge/v2/arathoth/commands/sub/nbt/Clear.java
+ ink.rainbowbridge.v2.arathoth.commands.sub.nbt.Clear
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/MagicArmor.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.MagicArmor
+ink/rainbowbridge/v2/arathoth/attribute/conditionimpl/Unbreakable.java
+ ink.rainbowbridge.v2.arathoth.attribute.conditionimpl.Unbreakable
+ink/rainbowbridge/v2/arathoth/bstats/Metrics.java
+ ink.rainbowbridge.v2.arathoth.bstats.Metrics
+ ink.rainbowbridge.v2.arathoth.bstats.Metrics$AdvancedBarChart
+ ink.rainbowbridge.v2.arathoth.bstats.Metrics$AdvancedPie
+ ink.rainbowbridge.v2.arathoth.bstats.Metrics$CustomChart
+ ink.rainbowbridge.v2.arathoth.bstats.Metrics$DrilldownPie
+ ink.rainbowbridge.v2.arathoth.bstats.Metrics$MultiLineChart
+ ink.rainbowbridge.v2.arathoth.bstats.Metrics$SimpleBarChart
+ ink.rainbowbridge.v2.arathoth.bstats.Metrics$SimplePie
+ ink.rainbowbridge.v2.arathoth.bstats.Metrics$SingleLineChart
+ink/rainbowbridge/v2/arathoth/commands/sub/About.java
+ ink.rainbowbridge.v2.arathoth.commands.sub.About
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/PlayerArmor.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.PlayerArmor
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/HitRate.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.HitRate
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/AdditionalHealth.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.AdditionalHealth
+ink/rainbowbridge/v2/arathoth/attribute/enums/PlaceHolderType.java
+ ink.rainbowbridge.v2.arathoth.attribute.enums.PlaceHolderType
+ink/rainbowbridge/v2/arathoth/commands/sub/Reload.java
+ ink.rainbowbridge.v2.arathoth.commands.sub.Reload
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/CritDamage.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.CritDamage
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/DodgeRate.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.DodgeRate
+ink/rainbowbridge/v2/arathoth/utils/NameUtils.java
+ ink.rainbowbridge.v2.arathoth.utils.NameUtils
+ink/rainbowbridge/v2/arathoth/commands/sub/nbt/ListNBT.java
+ ink.rainbowbridge.v2.arathoth.commands.sub.nbt.ListNBT
+ink/rainbowbridge/v2/arathoth/commands/MainCommand.java
+ ink.rainbowbridge.v2.arathoth.commands.MainCommand
+ink/rainbowbridge/v2/arathoth/attribute/enums/StatusType.java
+ ink.rainbowbridge.v2.arathoth.attribute.enums.StatusType
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/CritArmor.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.CritArmor
+ink/rainbowbridge/v2/arathoth/listeners/ListenStatusCmd.java
+ ink.rainbowbridge.v2.arathoth.listeners.ListenStatusCmd
+ink/rainbowbridge/v2/arathoth/commands/sub/nbt/RemoveAttr.java
+ ink.rainbowbridge.v2.arathoth.commands.sub.nbt.RemoveAttr
+ink/rainbowbridge/v2/arathoth/support/PlaceHolderHook.java
+ ink.rainbowbridge.v2.arathoth.support.PlaceHolderHook
+ink/rainbowbridge/v2/arathoth/listeners/ListenStatusUpdate.java
+ ink.rainbowbridge.v2.arathoth.listeners.ListenStatusUpdate
+ ink.rainbowbridge.v2.arathoth.listeners.ListenStatusUpdate$1
+ ink.rainbowbridge.v2.arathoth.listeners.ListenStatusUpdate$2
+ ink.rainbowbridge.v2.arathoth.listeners.ListenStatusUpdate$3
+ ink.rainbowbridge.v2.arathoth.listeners.ListenStatusUpdate$4
+ ink.rainbowbridge.v2.arathoth.listeners.ListenStatusUpdate$5
+ ink.rainbowbridge.v2.arathoth.listeners.ListenStatusUpdate$6
+ ink.rainbowbridge.v2.arathoth.listeners.ListenStatusUpdate$7
+ ink.rainbowbridge.v2.arathoth.listeners.ListenStatusUpdate$8
+ink/rainbowbridge/v2/arathoth/attribute/conditionimpl/OwnderRequest.java
+ ink.rainbowbridge.v2.arathoth.attribute.conditionimpl.OwnderRequest
+ink/rainbowbridge/v2/arathoth/attribute/conditionimpl/PermRequest.java
+ ink.rainbowbridge.v2.arathoth.attribute.conditionimpl.PermRequest
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/LifeSteal.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.LifeSteal
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/Regen.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.Regen
+ink/rainbowbridge/v2/arathoth/commands/sub/nbt/RemoveType.java
+ ink.rainbowbridge.v2.arathoth.commands.sub.nbt.RemoveType
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/PhysicalDamage.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.PhysicalDamage
+ink/rainbowbridge/v2/arathoth/attribute/abstracts/ArathothCondition.java
+ ink.rainbowbridge.v2.arathoth.attribute.abstracts.ArathothCondition
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/AttackRange.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.AttackRange
+ink/rainbowbridge/v2/arathoth/commands/sub/LoadData.java
+ ink.rainbowbridge.v2.arathoth.commands.sub.LoadData
+ink/rainbowbridge/v2/arathoth/attribute/event/ArathothStatusUpdateEvent.java
+ ink.rainbowbridge.v2.arathoth.attribute.event.ArathothStatusUpdateEvent
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/PlayerDamage.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.PlayerDamage
+ink/rainbowbridge/v2/arathoth/listeners/ListenStatusExecute.java
+ ink.rainbowbridge.v2.arathoth.listeners.ListenStatusExecute
+ ink.rainbowbridge.v2.arathoth.listeners.ListenStatusExecute$1
+ink/rainbowbridge/v2/arathoth/api/ArathothAPI.java
+ ink.rainbowbridge.v2.arathoth.api.ArathothAPI
+ink/rainbowbridge/v2/arathoth/commands/sub/ListAttr.java
+ ink.rainbowbridge.v2.arathoth.commands.sub.ListAttr
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/PhysicalArmor.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.PhysicalArmor
+ink/rainbowbridge/v2/arathoth/attribute/event/ArathothStatusExecuteEvent.java
+ ink.rainbowbridge.v2.arathoth.attribute.event.ArathothStatusExecuteEvent
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/Oblivion.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.Oblivion
+ink/rainbowbridge/v2/arathoth/attribute/enums/StatusPriority.java
+ ink.rainbowbridge.v2.arathoth.attribute.enums.StatusPriority
+ink/rainbowbridge/v2/arathoth/attribute/SlotsManager.java
+ ink.rainbowbridge.v2.arathoth.attribute.SlotsManager
+ink/rainbowbridge/v2/arathoth/utils/AttrUtil.java
+ ink.rainbowbridge.v2.arathoth.utils.AttrUtil
+ink/rainbowbridge/v2/arathoth/commands/sub/nbt/AddAttr.java
+ ink.rainbowbridge.v2.arathoth.commands.sub.nbt.AddAttr
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/MonsterDamage.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.MonsterDamage
+ink/rainbowbridge/v2/arathoth/commands/sub/nbt/AddCondition.java
+ ink.rainbowbridge.v2.arathoth.commands.sub.nbt.AddCondition
+ink/rainbowbridge/v2/arathoth/attribute/conditionimpl/LevelRequired.java
+ ink.rainbowbridge.v2.arathoth.attribute.conditionimpl.LevelRequired
+ink/rainbowbridge/v2/arathoth/attribute/event/ArathothPostDamageEvent.java
+ ink.rainbowbridge.v2.arathoth.attribute.event.ArathothPostDamageEvent
+ink/rainbowbridge/v2/arathoth/commands/sub/nbt/RemoveCondition.java
+ ink.rainbowbridge.v2.arathoth.commands.sub.nbt.RemoveCondition
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/CritDefense.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.CritDefense
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/CritChance.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.CritChance
+ink/rainbowbridge/v2/arathoth/attribute/AttributeManager.java
+ ink.rainbowbridge.v2.arathoth.attribute.AttributeManager
+ ink.rainbowbridge.v2.arathoth.attribute.AttributeManager$1
+ink/rainbowbridge/v2/arathoth/listeners/ListenMessage.java
+ ink.rainbowbridge.v2.arathoth.listeners.ListenMessage
+ink/rainbowbridge/v2/arathoth/ArathothII.java
+ ink.rainbowbridge.v2.arathoth.ArathothII
+ink/rainbowbridge/v2/arathoth/attribute/attributeimpl/MagicDamage.java
+ ink.rainbowbridge.v2.arathoth.attribute.attributeimpl.MagicDamage
+ink/rainbowbridge/v2/arathoth/commands/sub/nbt/AddType.java
+ ink.rainbowbridge.v2.arathoth.commands.sub.nbt.AddType
